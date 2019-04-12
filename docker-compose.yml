@@ -1,0 +1,26 @@
+version: '3.3'
+
+services:
+ 
+  buzzbird_app:
+    env_file:
+      - .env
+    restart: always
+    ports:
+      - 3000:3000
+    expose:
+      - 3000
+    build: .
+    hostname: buzzbird_app
+    command: bash app.sh
+    network_mode: my-net
+
+  worker:
+    env_file:
+      - .env
+    restart: always
+    build: .
+    depends_on:
+      - buzzbird_app
+    command: python3 manage.py qcluster
+    network_mode: my-net
