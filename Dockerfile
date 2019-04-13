@@ -3,7 +3,7 @@
 # OS Support also exists for jessie & stretch (slim and full).
 # See https://hub.docker.com/r/library/python/ for all supported Python
 # tags from Docker Hub.
-FROM python:latest
+FROM kennethreitz/pipenv:latest
 
 # If you prefer miniconda:
 #FROM continuumio/miniconda3
@@ -14,7 +14,7 @@ LABEL Name=travis-ci Version=0.0.1
 WORKDIR /app
 ADD . /app
 
-COPY hello.py /app/
+#COPY . /app/
 
 #RUN python3 manage.py migrate
 #RUN python3 manage.py init_admin
